@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import projectHub from "../assets/projecthublogo.png";
 
 const Project = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   return (
     <div className="border-b-4 pb-10 border-neutral-900 flex flex-col items-center">

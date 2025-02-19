@@ -3,7 +3,7 @@ import about from "../assets/about.jpg";
 import { motion, AnimatePresence } from "framer-motion";
 
 const About = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   return (
     <div className="border-b border-neutral-900 mt-40 flex justify-center items-center ">
