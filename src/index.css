@@ -1,0 +1,13 @@
+@import "tailwindcss";
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
+
+.lightTheme{
+  size: 100vw;
+  background: white;
+  color:black;
+}
+
+.darkTheme {
+  background: linear-gradient(to top left, #111827, #1f2937, #111827);
+  color: #e5e7eb;
+}
