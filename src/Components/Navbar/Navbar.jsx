@@ -18,7 +18,7 @@ const Navbar = () => {
     { id: "projects", label: "Projects", href: "#projects" },
     { id: "tech", label: "Tech Stack", href: "#tech" },
     { id: "education", label: "Education", href: "#education" },
-    { id: "resume", label: "Services", href: "#Services" },
+    
   ];
 
   // Close mobile menu when ESC key is pressed
