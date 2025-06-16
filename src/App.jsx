@@ -6,7 +6,7 @@ import Hero from "./Components/HeroSection/Hero";
 import Projects from "./Components/Projects/Project";
 import { useTheme } from "./Context/ThemeContext";
 import TechStack from "./Components/TechStack/TechStack";
-import Education from "./Components/Education/education";
+import Education from "./Components/Education/Education";
 
 
 import Contact from "./Components/Contact/Contact";
