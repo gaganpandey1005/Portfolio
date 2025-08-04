@@ -62,7 +62,7 @@ const Hero = () => {
             <a href="https://github.com/gaganpandey1005">
               <FaGithub className="text-xl   hover:bg-black rounded-[50%]" />
             </a>
-            <a href="https://github.com/gaganpandey1005">
+            <a href="https://www.linkedin.com/in/gaganpandey/">
               <BsLinkedin className="text-xl hover:bg-gray-900 rounded-[50%]" />
             </a>
           </div>

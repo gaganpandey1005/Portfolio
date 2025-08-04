@@ -10,21 +10,21 @@ const Contact = () => {
 
   const details = [
     {
-      label: "gaganpandey0810@gmail.com",
+      label: import.meta.env.VITE_EMAIL,
       icon: "📧",
-      link: "mailto:gaganpandey0810@gmail.com",
+      link: "mailto:import.meta.env.VITE_EMAIL",
       type: "Email",
     },
     {
       label: "8871860269",
       icon: "📱",
-      link: "tel:8871860269",
+      link: "tel:mailto:import.meta.env.VITE_PHONE",
       type: "Phone",
     },
     {
       label: "Indore, Madhya Pradesh",
       icon: "📍",
-      link: "https://www.google.com/maps?q=Indore,+Madhya+Pradesh",
+      link: "https://www.google.com/maps?q=/MR+9+Rd,+Indore,+Madhya+Pradesh",
       type: "Location",
     },
   ];
