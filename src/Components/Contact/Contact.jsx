@@ -18,7 +18,7 @@ const Contact = () => {
     {
       label: "8871860269",
       icon: "📱",
-      link: "tel:mailto:import.meta.env.VITE_PHONE",
+      link: `tel:${import.meta.env.VITE_PHONE}`,
       type: "Phone",
     },
     {

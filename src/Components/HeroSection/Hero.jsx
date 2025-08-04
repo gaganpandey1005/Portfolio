@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     <>
       <section
-        className={`min-h-screen    md:px-12 md:flex-row px-9  flex flex-col  items-center`}
+        className={`min-h-screen px-5 md:px-12 flex flex-col md:flex-row items-center justify-center gap-8`}
       >
         <div className="mt-15">
           <span className="bg-pink-700 p-2 rounded-2xl font-semibold">
