@@ -5,6 +5,7 @@ const Projects = () => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const [activeCategory, setActiveCategory] = useState("All");
+  const [flippedCards, setFlippedCards] = useState(new Set());
 
   // Your actual project data
   const projects = [
@@ -74,35 +75,48 @@ const Projects = () => {
       ? projects
       : projects.filter((project) => project.category === activeCategory);
 
+  // Handle card flip toggle
+  const toggleCardFlip = (projectId) => {
+    setFlippedCards((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(projectId)) {
+        newSet.delete(projectId);
+      } else {
+        newSet.add(projectId);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <section
       id="projects"
-      className={`min-h-screen py-20 px-4 sm:px-8 md:px-16`}
+      className={`min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-16`}
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <h2
-            className={`text-4xl md:text-5xl font-bold mb-4 inline-block relative ${
+            className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 inline-block relative ${
               isDark ? "text-white" : "text-gray-800"
             }`}
           >
             My Projects
             <span className="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-gradient-to-r from-pink-500 to-indigo-500"></span>
           </h2>
-          <p className="max-w-2xl mx-auto text-lg opacity-80 mt-4">
+          <p className="max-w-2xl mx-auto text-base sm:text-lg opacity-80 mt-4 px-4">
             Here are some of my projects that showcase my skills and experience
             in web development.
           </p>
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 px-2">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                 activeCategory === category
                   ? isDark
                     ? "bg-pink-600 text-white shadow-lg shadow-pink-600/20"
@@ -118,13 +132,27 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid with Flip Card Effect */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredProjects.map((project) => (
-            <div key={project.id} className="h-80 [perspective:1000px]">
-              <div className="relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
+            <div key={project.id} className="h-80 sm:h-80 [perspective:1000px]">
+              <div
+                className={`relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] cursor-pointer group ${
+                  flippedCards.has(project.id)
+                    ? "[transform:rotateY(180deg)]"
+                    : ""
+                } hover:[transform:rotateY(180deg)]`}
+                onClick={() => toggleCardFlip(project.id)}
+                onMouseLeave={() =>
+                  setFlippedCards((prev) => {
+                    const newSet = new Set(prev);
+                    newSet.delete(project.id);
+                    return newSet;
+                  })
+                }
+              >
                 {/* Front Side */}
                 <div
-                  className={`absolute w-full h-full rounded-xl p-6 flex flex-col justify-between ${
+                  className={`absolute w-full h-full rounded-xl p-4 sm:p-6 flex flex-col justify-between ${
                     isDark
                       ? "bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg"
                       : "bg-white shadow-md"
@@ -132,9 +160,9 @@ const Projects = () => {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   {/* Project Category Badge */}
-                  <div className="absolute top-4 right-4">
+                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
                     <span
-                      className={`text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold ${
+                      className={`text-xs px-2 sm:px-3 py-1 rounded-full uppercase tracking-wider font-semibold ${
                         project.category === "Frontend"
                           ? "bg-indigo-500 text-white"
                           : project.category === "Backend"
@@ -146,28 +174,32 @@ const Projects = () => {
                     </span>
                   </div>
 
-                  <div className="flex flex-col h-full justify-between">
+                
+
+                  <div className="flex flex-col h-full justify-between pt-8 sm:pt-0">
                     <div>
                       <h3
-                        className={`text-2xl font-bold mb-3 ${
+                        className={`text-xl sm:text-2xl font-bold mb-2 sm:mb-3 ${
                           isDark ? "text-pink-400" : "text-pink-600"
                         }`}
                       >
                         {project.name}
                       </h3>
-                      <p className="text-base">{project.desc}</p>
+                      <p className="text-sm sm:text-base leading-relaxed">
+                        {project.desc}
+                      </p>
                     </div>
 
                     {/* Tech Stack */}
-                    <div className="mt-4">
+                    <div className="mt-3 sm:mt-4">
                       <p
-                        className={`text-sm mb-2 ${
+                        className={`text-xs sm:text-sm mb-2 ${
                           isDark ? "text-gray-400" : "text-gray-600"
                         }`}
                       >
                         Tech Stack:
                       </p>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1 sm:gap-2">
                         {project.techStack.map((tech, index) => (
                           <span
                             key={index}
@@ -183,27 +215,32 @@ const Projects = () => {
                       </div>
                     </div>
                   </div>
+
+                  {/* Mobile tap indicator */}
+                  <div className="sm:hidden absolute bottom-2 right-2 opacity-50">
+                  
+                  </div>
                 </div>
 
                 {/* Back Side */}
                 <div
-                  className={`absolute w-full h-full rounded-xl p-6 [transform:rotateY(180deg)] ${
+                  className={`absolute w-full h-full rounded-xl p-4 sm:p-6 [transform:rotateY(180deg)] ${
                     isDark
                       ? "bg-gradient-to-br from-gray-800 to-gray-700 shadow-lg"
                       : "bg-gradient-to-br from-gray-100 to-white shadow-md"
                   }`}
                   style={{ backfaceVisibility: "hidden" }}
                 >
-                  <div className="flex flex-col h-full justify-center items-center gap-6">
+                  <div className="flex flex-col h-full justify-center items-center gap-4 sm:gap-6">
                     <div
-                      className={`w-16 h-16 rounded-full flex items-center justify-center ${
+                      className={`w-12 sm:w-16 h-12 sm:h-16 rounded-full flex items-center justify-center ${
                         isDark
                           ? "bg-gray-900 text-pink-400"
                           : "bg-pink-100 text-pink-600"
                       }`}
                     >
                       <svg
-                        className="w-8 h-8"
+                        className="w-6 sm:w-8 h-6 sm:h-8"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -218,23 +255,24 @@ const Projects = () => {
                       </svg>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-center">
+                    <h3 className="text-lg sm:text-2xl font-bold text-center px-2">
                       {project.name}
                     </h3>
 
-                    <div className="flex gap-4 w-full justify-center">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full justify-center px-2">
                       <a
                         href={project.gitHub}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`flex items-center justify-center px-5 py-2 rounded-lg ${
+                        onClick={(e) => e.stopPropagation()}
+                        className={`flex items-center justify-center px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base ${
                           isDark
                             ? "bg-gray-900 hover:bg-gray-800 text-white"
                             : "bg-gray-800 hover:bg-gray-700 text-white"
-                        } transition-all duration-300 font-medium`}
+                        } transition-all duration-300 font-medium min-w-0`}
                       >
                         <svg
-                          className="w-5 h-5 mr-2"
+                          className="w-4 sm:w-5 h-4 sm:h-5 mr-2 flex-shrink-0"
                           fill="currentColor"
                           viewBox="0 0 24 24"
                           aria-hidden="true"
@@ -245,7 +283,7 @@ const Projects = () => {
                             clipRule="evenodd"
                           ></path>
                         </svg>
-                        Code
+                        <span className="truncate">Code</span>
                       </a>
 
                       {project.liveLink && (
@@ -253,14 +291,15 @@ const Projects = () => {
                           href={project.liveLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`flex items-center justify-center px-5 py-2 rounded-lg ${
+                          onClick={(e) => e.stopPropagation()}
+                          className={`flex items-center justify-center px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base ${
                             isDark
                               ? "bg-pink-600 hover:bg-pink-500 text-white"
                               : "bg-pink-500 hover:bg-pink-400 text-white"
-                          } transition-all duration-300 font-medium`}
+                          } transition-all duration-300 font-medium min-w-0`}
                         >
                           <svg
-                            className="w-5 h-5 mr-2"
+                            className="w-4 sm:w-5 h-4 sm:h-5 mr-2 flex-shrink-0"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -273,7 +312,7 @@ const Projects = () => {
                               d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                             ></path>
                           </svg>
-                          Live Demo
+                          <span className="truncate">Live Demo</span>
                         </a>
                       )}
                     </div>

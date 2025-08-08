@@ -18,7 +18,11 @@ const App = () => {
   const {theme}=useTheme()
   const isDark=theme=="dark";
   return (
-    <div className={`${isDark ? "darkTheme" : "lightTheme"}`}>
+    <div
+      className={`${
+        isDark ? "darkTheme" : "lightTheme"
+      }  min-h-screen w-full p-4 sm:p-6 md:p-8 overflow-hidden`}
+    >
       <Navbar />
       <section id="home">
         <Hero />
@@ -36,10 +40,6 @@ const App = () => {
       <section id="contact">
         <Contact />
       </section>
-      
-      
-       
-  
     </div>
   );
 };

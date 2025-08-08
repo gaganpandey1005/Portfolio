@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     <>
       <section
-        className={`min-h-screen    md:px-12 md:flex-row px-9  flex flex-col  items-center`}
+        className={`min-h-screen px-5 md:px-12 flex flex-col md:flex-row items-center justify-center gap-8`}
       >
         <div className="mt-15">
           <span className="bg-pink-700 p-2 rounded-2xl font-semibold">
@@ -62,7 +62,7 @@ const Hero = () => {
             <a href="https://github.com/gaganpandey1005">
               <FaGithub className="text-xl   hover:bg-black rounded-[50%]" />
             </a>
-            <a href="https://github.com/gaganpandey1005">
+            <a href="https://www.linkedin.com/in/gaganpandey/">
               <BsLinkedin className="text-xl hover:bg-gray-900 rounded-[50%]" />
             </a>
           </div>

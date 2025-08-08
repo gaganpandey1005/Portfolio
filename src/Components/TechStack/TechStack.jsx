@@ -145,19 +145,23 @@ const TechStack = () => {
   const categories = Object.keys(techStackData);
 
   return (
-    <div className={`min-h-screen py-20 px-4 sm:px-8 md:px-16`}>
+    <div className={`min-h-screen py-20 px-4 sm:px-8 md:px-16 `}>
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-6xl font-bold mb-2">
-          <span className={theme === "dark" ? "text-white" : "text-black"}>
-            Tech{" "}
-          </span>
-          <span className="text-pink-600">Stack</span>
+          <h1 className="text-5xl sm:text-4xl md:text-6xl font-bold mb-2 text-center">
+            <span
+              className={`${theme === "dark" ? "text-white" : "text-black"}`}
+            >
+              Tech{" "}
+            </span>
+            <span className="text-pink-600">Stack</span>
+          </h1>
         </h1>
         <p>Technologies and tools I use to bring ideas in life</p>
       </div>
 
       {/* Category Buttons */}
-      <div className="flex justify-center gap-x-6 mt-8">
+      <div className="flex justify-center gap-x-6 flex-wrap mt-8">
         {categories.map((key) => (
           <button
             key={techStackData[key].title}
@@ -195,7 +199,7 @@ const TechStack = () => {
               <div
                 key={tech.name}
                 className={`${
-                  isDark ?"darkTheme":"lightTheme"
+                  isDark ? "darkTheme" : "lightTheme"
                 }   p-4 rounded-lg w-[280px] shadow-md transition-colors duration-300`}
               >
                 <div className="flex items-center gap-3 mb-2">

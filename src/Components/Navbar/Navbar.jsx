@@ -68,7 +68,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 px-4 py-3">
+    <header className="fixed top-0 left-0 right-0 z-40 px-4 py-3 ">
       {/* Desktop Navbar */}
       <nav
         className={`hidden md:flex justify-between items-center p-3 rounded-2xl shadow-lg transition-colors ${
@@ -115,7 +115,7 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Navigation */}
-      <div className="md:hidden flex justify-end">
+      <div className="md:hidden flex justify-end ml-1">
         <button
           onClick={() => setOpen(!open)}
           className={`p-3 z-50 rounded-full shadow-md ${
